@@ -1,0 +1,3772 @@
+| 447.406881ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 108.134372ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 48.703836ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.107µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 32.915µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.852µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.047µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.277µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 46.538414ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 66.93µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.377µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.61µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.859µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.171µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.883µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.211µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.597µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.663µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.319µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.036µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 44.078216ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 41.280164ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 47.368µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 66.157587ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 80.613598ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.329543ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.936µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.674µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.234µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.345µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.14µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.723669ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.563µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.8µs     | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.18µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.825µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.297µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.125µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 23.533µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.686µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.567µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.848µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.388µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.361157ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 31.908004ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.72µs    | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 68.031855ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 80.925597ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 37.101921ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.762µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.995µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.117µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13µs       | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.918µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 37.119573ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 18.033µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.052µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.37µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 23.573µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 20.531µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.959µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 30.8µs     | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.207µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.033µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.699µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.933µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.828284ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 33.042277ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.179µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 68.373536ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 80.119048ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 37.167478ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 21.014µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.822µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.355µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.503µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.231µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.257202ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 23.819µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.023µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.188µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.607µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.462µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.734µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 31.189µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.853µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.558µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.638µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.63µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.157866ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 33.210334ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.878µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 67.922705ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 81.360586ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 37.314562ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.481µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.485µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.098µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.239µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.872µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.833112ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.611µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.373µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.435µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.324µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.98µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.655µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.606µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.777µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.228µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.263µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.402µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.793266ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 33.229068ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 20.033µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 67.969133ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 79.562746ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.080054ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 18.949µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.614µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.88µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.687µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 22.345µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.502774ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.844µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.244µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.018µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.659µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.032µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.088µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.312µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.968µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.827µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.598µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.285µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.092079ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 31.783271ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 20.213µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 67.487351ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 80.560483ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::normal::NormalFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Normal {
+        mean: (),
+        std: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.7904ms  | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 18.69µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.27µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.121µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.984µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.772µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.45649ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 20.102µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.327µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.716µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.412µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.913µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.463µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.768µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.588µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.737µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.607µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 12.678µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 35.216562ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 32.421535ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 22.257µs   | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 68.058432ms | cubecl_random::base::prng_kernel::PrngKernel<cubecl_random::uniform::UniformFamily, f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    128,
+    1,
+     (),
+     (),
+     (),
+     (),
+    Uniform {
+        lower_bound: (),
+        upper_bound: (),
+        ,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 37.471008ms | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 17.726µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 16.48µs    | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 14.244µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 13.893µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 15.227µs   | burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<f32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 16,
+        y: 16,
+        z: 1,
+    },
+    1,
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    Sequence [
+         (),
+    ],
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 36.794229ms | test1::kernel::bin_kernel::BinKernel<f32, i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)
+| 32.861648ms | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (1, 1, 1)
+| 19.76µs    | test1::kernel::zero_init_kernel::ZeroInitKernel<i32, cubecl_cuda::runtime::CudaRuntime>: (
+    CubeDim {
+        x: 256,
+        y: 1,
+        z: 1,
+    },
+     (),
+    TensorCompilationArg {
+        inplace: None,
+        vectorisation: Some (
+            1,
+        ),
+    },
+) CubeCount (4, 1, 1)

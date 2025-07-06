@@ -1,0 +1,6222 @@
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_11 = static_info.x[uint32(0)];
+const bool l_12 = idxGlobal < l_11;
+const uint32 l_13 = static_info.x[uint32(3)];
+const uint32 l_14 = l_13 - uint32(0);
+const int32 l_15 = int32(uint32(0));
+const uint32 l_16 = uint32(l_12);
+const uint32 l_17 = idxGlobal * l_16;
+const uint32 l_18 = uint32(0) + l_17;
+const int32 l_19 = buffer_0[l_18];
+const int32 l_20 = (l_12) ? l_19 : l_15;
+const int32 l_2 = l_20;
+const int32 l_3 = int32(float(32.0));
+const bool l_4 = l_2 <= l_3;
+if (l_4) {
+const uint32 l_5 = uint32(l_2);
+const uint32 l_6 = l_5 + uint32(1);
+const bool l_7 = l_6 > uint32(0);
+if (l_7) {
+__syncthreads();
+
+const uint32 l_21 = static_info.x[uint32(2)];
+const bool l_22 = l_6 < l_21;
+const uint32 l_23 = uint32(l_22);
+const uint32 l_24 = l_6 * l_23;
+int32* l_25 = &buffer_2[l_24];
+const int32 l_8 = l_25;
+const int32 l_9 = atomicAdd(l_8, int32(1));
+__syncthreads();
+
+const uint32 l_26 = static_info.x[uint32(1)];
+const bool l_27 = idxGlobal < l_26;
+const uint32 l_28 = uint32(l_27);
+const uint32 l_29 = idxGlobal * l_28;
+int32* l_30 = &buffer_1[l_29];
+const int32 l_10 = l_30;
+atomicExch(l_10, l_9);
+} else {
+return;}
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_11 = static_info.x[uint32(0)];
+const bool l_12 = idxGlobal < l_11;
+const uint32 l_13 = static_info.x[uint32(3)];
+const uint32 l_14 = l_13 - uint32(0);
+const int32 l_15 = int32(uint32(0));
+const uint32 l_16 = uint32(l_12);
+const uint32 l_17 = idxGlobal * l_16;
+const uint32 l_18 = uint32(0) + l_17;
+const int32 l_19 = buffer_0[l_18];
+const int32 l_20 = (l_12) ? l_19 : l_15;
+const int32 l_2 = l_20;
+const int32 l_3 = int32(float(32.0));
+const bool l_4 = l_2 <= l_3;
+if (l_4) {
+const uint32 l_5 = uint32(l_2);
+const uint32 l_6 = l_5 + uint32(1);
+const bool l_7 = l_6 > uint32(0);
+if (l_7) {
+__syncthreads();
+
+const uint32 l_21 = static_info.x[uint32(2)];
+const bool l_22 = l_6 < l_21;
+const uint32 l_23 = uint32(l_22);
+const uint32 l_24 = l_6 * l_23;
+int32* l_25 = &buffer_2[l_24];
+const int32 l_8 = l_25;
+const int32 l_9 = atomicAdd(l_8, int32(1));
+__syncthreads();
+
+const uint32 l_26 = static_info.x[uint32(1)];
+const bool l_27 = idxGlobal < l_26;
+const uint32 l_28 = uint32(l_27);
+const uint32 l_29 = idxGlobal * l_28;
+int32* l_30 = &buffer_1[l_29];
+const int32 l_10 = l_30;
+atomicExch(l_10, l_9);
+} else {
+return;}
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_11 = static_info.x[uint32(0)];
+const bool l_12 = idxGlobal < l_11;
+const uint32 l_13 = static_info.x[uint32(3)];
+const uint32 l_14 = l_13 - uint32(0);
+const int32 l_15 = int32(uint32(0));
+const uint32 l_16 = uint32(l_12);
+const uint32 l_17 = idxGlobal * l_16;
+const uint32 l_18 = uint32(0) + l_17;
+const int32 l_19 = buffer_0[l_18];
+const int32 l_20 = (l_12) ? l_19 : l_15;
+const int32 l_2 = l_20;
+const int32 l_3 = int32(float(32.0));
+const bool l_4 = l_2 <= l_3;
+if (l_4) {
+const uint32 l_5 = uint32(l_2);
+const uint32 l_6 = l_5 + uint32(1);
+const bool l_7 = l_6 > uint32(0);
+if (l_7) {
+__syncthreads();
+
+const uint32 l_21 = static_info.x[uint32(2)];
+const bool l_22 = l_6 < l_21;
+const uint32 l_23 = uint32(l_22);
+const uint32 l_24 = l_6 * l_23;
+int32* l_25 = &buffer_2[l_24];
+const int32 l_8 = l_25;
+const int32 l_9 = atomicAdd(l_8, int32(1));
+__syncthreads();
+
+const uint32 l_26 = static_info.x[uint32(1)];
+const bool l_27 = idxGlobal < l_26;
+const uint32 l_28 = uint32(l_27);
+const uint32 l_29 = idxGlobal * l_28;
+int32* l_30 = &buffer_1[l_29];
+const int32 l_10 = l_30;
+atomicExch(l_10, l_9);
+} else {
+return;}
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_11 = static_info.x[uint32(0)];
+const bool l_12 = idxGlobal < l_11;
+const uint32 l_13 = static_info.x[uint32(3)];
+const uint32 l_14 = l_13 - uint32(0);
+const int32 l_15 = int32(uint32(0));
+const uint32 l_16 = uint32(l_12);
+const uint32 l_17 = idxGlobal * l_16;
+const uint32 l_18 = uint32(0) + l_17;
+const int32 l_19 = buffer_0[l_18];
+const int32 l_20 = (l_12) ? l_19 : l_15;
+const int32 l_2 = l_20;
+const int32 l_3 = int32(float(32.0));
+const bool l_4 = l_2 <= l_3;
+if (l_4) {
+const uint32 l_5 = uint32(l_2);
+const uint32 l_6 = l_5 + uint32(1);
+const bool l_7 = l_6 > uint32(0);
+if (l_7) {
+__syncthreads();
+
+const uint32 l_21 = static_info.x[uint32(2)];
+const bool l_22 = l_6 < l_21;
+const uint32 l_23 = uint32(l_22);
+const uint32 l_24 = l_6 * l_23;
+int32* l_25 = &buffer_2[l_24];
+const int32 l_8 = l_25;
+const int32 l_9 = atomicAdd(l_8, int32(1));
+__syncthreads();
+
+const uint32 l_26 = static_info.x[uint32(1)];
+const bool l_27 = idxGlobal < l_26;
+const uint32 l_28 = uint32(l_27);
+const uint32 l_29 = idxGlobal * l_28;
+int32* l_30 = &buffer_1[l_29];
+const int32 l_10 = l_30;
+atomicExch(l_10, l_9);
+} else {
+return;}
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+const uint32 l_0 = uint32(int32(1));
+const uint32 l_3 = static_info.x[uint32(2)];
+const bool l_4 = l_0 < l_3;
+const uint32 l_5 = uint32(l_4);
+const uint32 l_6 = l_0 * l_5;
+int32* l_7 = &buffer_2[l_6];
+const int32 l_1 = l_7;
+const int32 l_2 = atomicAdd(l_1, int32(1));
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+const uint32 l_0 = uint32(int32(1));
+const uint32 l_3 = static_info.x[uint32(2)];
+const bool l_4 = l_0 < l_3;
+const uint32 l_5 = uint32(l_4);
+const uint32 l_6 = l_0 * l_5;
+int32* l_7 = &buffer_2[l_6];
+const int32 l_1 = l_7;
+const int32 l_2 = atomicAdd(l_1, int32(1));
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::normal::NormalFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xb832334350d104677b03d8eacf4a446f,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Normal {
+                mean: (),
+                std: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : normal: : NormalFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_16;
+float l_mut_17;
+float l_mut_19;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[0];
+const float l_14 = scalars_float.x[1];
+const float l_15 = float(int32(0));
+l_mut_16 = l_15;
+l_mut_17 = l_mut_16;
+const float l_18 = float(int32(0));
+l_mut_16 = l_18;
+l_mut_19 = l_mut_16;
+
+for (uint32 l_mut_20 = uint32(0); l_mut_20 < uint32(64); ++l_mut_20) {
+const uint32 l_21 = l_mut_6 << uint32(13);
+const uint32 l_22 = l_21 ^ l_mut_6;
+const uint32 l_23 = l_22 >> uint32(19);
+const uint32 l_24 = l_mut_6 & uint32(4294967294);
+const uint32 l_25 = l_24 << uint32(12);
+const uint32 l_26 = l_25 ^ l_23;
+l_mut_6 = l_26;
+const uint32 l_27 = l_mut_8 << uint32(2);
+const uint32 l_28 = l_27 ^ l_mut_8;
+const uint32 l_29 = l_28 >> uint32(25);
+const uint32 l_30 = l_mut_8 & uint32(4294967288);
+const uint32 l_31 = l_30 << uint32(4);
+const uint32 l_32 = l_31 ^ l_29;
+l_mut_8 = l_32;
+const uint32 l_33 = l_mut_10 << uint32(3);
+const uint32 l_34 = l_33 ^ l_mut_10;
+const uint32 l_35 = l_34 >> uint32(11);
+const uint32 l_36 = l_mut_10 & uint32(4294967280);
+const uint32 l_37 = l_36 << uint32(17);
+const uint32 l_38 = l_37 ^ l_35;
+l_mut_10 = l_38;
+const uint32 l_39 = l_mut_12 * uint32(1664525);
+const uint32 l_40 = l_39 + uint32(1013904223);
+l_mut_12 = l_40;
+const uint32 l_41 = l_mut_6 ^ l_mut_8;
+const uint32 l_42 = l_41 ^ l_mut_10;
+const uint32 l_43 = l_42 ^ l_mut_12;
+const float l_44 = float(l_43);
+const float l_45 = l_44 * float(2.3283064e-10);
+const uint32 l_46 = l_mut_6 << uint32(13);
+const uint32 l_47 = l_46 ^ l_mut_6;
+const uint32 l_48 = l_47 >> uint32(19);
+const uint32 l_49 = l_mut_6 & uint32(4294967294);
+const uint32 l_50 = l_49 << uint32(12);
+const uint32 l_51 = l_50 ^ l_48;
+l_mut_6 = l_51;
+const uint32 l_52 = l_mut_8 << uint32(2);
+const uint32 l_53 = l_52 ^ l_mut_8;
+const uint32 l_54 = l_53 >> uint32(25);
+const uint32 l_55 = l_mut_8 & uint32(4294967288);
+const uint32 l_56 = l_55 << uint32(4);
+const uint32 l_57 = l_56 ^ l_54;
+l_mut_8 = l_57;
+const uint32 l_58 = l_mut_10 << uint32(3);
+const uint32 l_59 = l_58 ^ l_mut_10;
+const uint32 l_60 = l_59 >> uint32(11);
+const uint32 l_61 = l_mut_10 & uint32(4294967280);
+const uint32 l_62 = l_61 << uint32(17);
+const uint32 l_63 = l_62 ^ l_60;
+l_mut_10 = l_63;
+const uint32 l_64 = l_mut_12 * uint32(1664525);
+const uint32 l_65 = l_64 + uint32(1013904223);
+l_mut_12 = l_65;
+const uint32 l_66 = l_mut_6 ^ l_mut_8;
+const uint32 l_67 = l_66 ^ l_mut_10;
+const uint32 l_68 = l_67 ^ l_mut_12;
+const float l_69 = float(l_68);
+const float l_70 = l_69 * float(2.3283064e-10);
+const float l_71 = log(l_45);
+const float l_72 = l_71 * float(-2.0);
+const float l_73 = sqrt(l_72);
+const float l_74 = l_73 * l_14;
+const float l_75 = float(6.2831855) * l_70;
+const float l_76 = cos(l_75);
+const float l_77 = l_76 * l_74;
+const float l_78 = l_77 + l_13;
+const float l_79 = sin(l_75);
+const float l_80 = l_79 * l_74;
+const float l_81 = l_80 + l_13;
+const float l_82 = l_78;
+l_mut_17 = l_82;
+const float l_83 = l_81;
+l_mut_19 = l_83;
+const uint32 l_84 = l_mut_20 * blockDimGlobal;
+const uint32 l_85 = l_84 * uint32(2);
+const uint32 l_86 = l_3 + l_85;
+const uint32 l_87 = l_86 + blockDimGlobal;
+const uint32 l_88 = static_info.x[uint32(0)];
+const bool l_89 = l_86 < l_88;
+if (l_89) {
+buffer_0[l_86] = l_mut_17;
+}
+const uint32 l_90 = static_info.x[uint32(0)];
+const bool l_91 = l_87 < l_90;
+if (l_91) {
+buffer_0[l_87] = l_mut_19;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x57f3876041c15e87c92ed5acfa55fbf6,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const int32 l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+const uint32 l_0 = uint32(int32(1));
+const uint32 l_3 = static_info.x[uint32(2)];
+const bool l_4 = l_0 < l_3;
+const uint32 l_5 = uint32(l_4);
+const uint32 l_6 = l_0 * l_5;
+int32* l_7 = &buffer_2[l_6];
+const int32 l_1 = l_7;
+const int32 l_2 = atomicAdd(l_1, int32(1));
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: cubecl_random::base::prng_kernel::PrngKernel<
+    cubecl_random::uniform::UniformFamily,
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0xdc78acfb6c783734558c3bdc6d098705,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            128,
+            1,
+             (),
+             (),
+             (),
+             (),
+            Uniform {
+                lower_bound: (),
+                upper_bound: (),
+                ,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "cubecl_random: : base: : prng_kernel: : PrngKernel<cubecl_random: : uniform: : UniformFamily,
+    f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_float_st {
+float x[2];
+};
+
+struct scalars_uint32_st {
+uint32 x[4];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void prng_kernel_f32 (
+    float* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_float_st scalars_float, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 threadIdxGlobal = threadIdx.x + threadIdx.y * blockDim.x + threadIdx.z * (blockDim.x * blockDim.y);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 blockDimGlobal = blockDim.x * blockDim.y * blockDim.z;
+uint32 blockIdxGlobal = (blockIdx.z * gridDim.y * gridDim.x) + (blockIdx.y * gridDim.x) + blockIdx.x;
+uint32 l_mut_6;
+uint32 l_mut_8;
+uint32 l_mut_10;
+uint32 l_mut_12;
+float l_mut_15;
+float l_mut_16;
+const uint32 l_0 = blockIdxGlobal * blockDimGlobal;
+const uint32 l_1 = l_0 * uint32(128);
+const uint32 l_2 = l_1 / uint32(1);
+const uint32 l_3 = l_2 + threadIdxGlobal;
+const uint32 l_4 = uint32(1000000007) * idxGlobal;
+const uint32 l_5 = l_4 + scalars_uint32.x[0];
+l_mut_6 = l_5;
+const uint32 l_7 = l_4 + scalars_uint32.x[1];
+l_mut_8 = l_7;
+const uint32 l_9 = l_4 + scalars_uint32.x[2];
+l_mut_10 = l_9;
+const uint32 l_11 = l_4 + scalars_uint32.x[3];
+l_mut_12 = l_11;
+const float l_13 = scalars_float.x[1] - scalars_float.x[0];
+const float l_14 = float(int32(0));
+l_mut_15 = l_14;
+l_mut_16 = l_mut_15;
+
+for (uint32 l_mut_17 = uint32(0); l_mut_17 < uint32(128); ++l_mut_17) {
+const uint32 l_18 = l_mut_6 << uint32(13);
+const uint32 l_19 = l_18 ^ l_mut_6;
+const uint32 l_20 = l_19 >> uint32(19);
+const uint32 l_21 = l_mut_6 & uint32(4294967294);
+const uint32 l_22 = l_21 << uint32(12);
+const uint32 l_23 = l_22 ^ l_20;
+l_mut_6 = l_23;
+const uint32 l_24 = l_mut_8 << uint32(2);
+const uint32 l_25 = l_24 ^ l_mut_8;
+const uint32 l_26 = l_25 >> uint32(25);
+const uint32 l_27 = l_mut_8 & uint32(4294967288);
+const uint32 l_28 = l_27 << uint32(4);
+const uint32 l_29 = l_28 ^ l_26;
+l_mut_8 = l_29;
+const uint32 l_30 = l_mut_10 << uint32(3);
+const uint32 l_31 = l_30 ^ l_mut_10;
+const uint32 l_32 = l_31 >> uint32(11);
+const uint32 l_33 = l_mut_10 & uint32(4294967280);
+const uint32 l_34 = l_33 << uint32(17);
+const uint32 l_35 = l_34 ^ l_32;
+l_mut_10 = l_35;
+const uint32 l_36 = l_mut_12 * uint32(1664525);
+const uint32 l_37 = l_36 + uint32(1013904223);
+l_mut_12 = l_37;
+const uint32 l_38 = l_mut_6 ^ l_mut_8;
+const uint32 l_39 = l_38 ^ l_mut_10;
+const uint32 l_40 = l_39 ^ l_mut_12;
+const float l_41 = float(l_40);
+const float l_42 = l_41 * float(2.3283064e-10);
+const float l_43 = l_13;
+const float l_44 = l_42 * l_43;
+const float l_45 = scalars_float.x[0];
+const float l_46 = l_44 + l_45;
+const float l_47 = l_46;
+l_mut_16 = l_47;
+const uint32 l_48 = l_mut_17 * blockDimGlobal;
+const uint32 l_49 = l_48 + l_3;
+const uint32 l_50 = static_info.x[uint32(0)];
+const bool l_51 = l_49 < l_50;
+if (l_51) {
+buffer_0[l_49] = l_mut_16;
+}
+}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: burn_cubecl::kernel::index::slice::slice_kernel::SliceKernel<
+    f32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (16, 16, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x308a7d4470d92aa22c4eb28527d133f9,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 16,
+                y: 16,
+                z: 1,
+            },
+            1,
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            Sequence [
+                 (),
+            ],
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "burn_cubecl: : kernel: : index: : slice: : slice_kernel: : SliceKernel<f32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void slice_kernel (
+    const float* __restrict__ buffer_0, float* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+uint32 l_mut_2;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal >= l_0;
+if (l_1) {
+return;}
+l_mut_2 = uint32(0);
+const uint32 l_3 = info[static_info.x[uint32(9)] + uint32(0) - 10];
+const uint32 l_4 = idxGlobal / l_3;
+const uint32 l_5 = info[static_info.x[uint32(7)] + uint32(0) - 10];
+const uint32 l_6 = l_4 % l_5;
+const uint32 l_7 = l_6 + scalars_uint32.x[0];
+const uint32 l_8 = info[static_info.x[uint32(8)] + uint32(0) - 10];
+const uint32 l_9 = l_7 * l_8;
+l_mut_2 = l_mut_2 + l_9;
+const float l_10 = buffer_0[l_mut_2];
+buffer_1[idxGlobal] = l_10;
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::bin_kernel::BinKernel<
+    f32,
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x54bd6554ec2def3921a7cafcef4ef0f2,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : bin_kernel: : BinKernel<f32,
+    i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[10];
+};
+
+
+extern "C" __global__ void bin_kernel_f32 (
+    const float* __restrict__ buffer_0, int32* buffer_1, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const uint32 l_0 = static_info.x[uint32(3)];
+const bool l_1 = idxGlobal < l_0;
+if (l_1) {
+const uint32 l_9 = static_info.x[uint32(0)];
+const bool l_10 = idxGlobal < l_9;
+const uint32 l_11 = static_info.x[uint32(2)];
+const uint32 l_12 = l_11 - uint32(0);
+const float l_13 = float(uint32(0));
+const uint32 l_14 = uint32(l_10);
+const uint32 l_15 = idxGlobal * l_14;
+const uint32 l_16 = uint32(0) + l_15;
+const float l_17 = buffer_0[l_16];
+const float l_18 = (l_10) ? l_17 : l_13;
+const float l_2 = l_18;
+const float l_3 = float(32.0);
+const float l_4 = l_2 * l_3;
+const float l_5 = float(1.0);
+const float l_6 = l_4 / l_5;
+const float l_7 = floor(l_6);
+const int32 l_8 = int32(l_7);
+const uint32 l_19 = static_info.x[uint32(1)];
+const bool l_20 = idxGlobal < l_19;
+if (l_20) {
+buffer_1[idxGlobal] = l_8;
+}
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::zero_init_kernel::ZeroInitKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x8def84bd0b4c761d67ee1a8cbefdf824,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+             (),
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Unchecked,
+    ),
+    type_name: "test1: : kernel: : zero_init_kernel: : ZeroInitKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct scalars_uint32_st {
+uint32 x[1];
+};
+
+struct metadata_st {
+uint x[5];
+};
+
+
+extern "C" __global__ void zero_init_kernel (
+    int32* buffer_0, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info, const __grid_constant__ scalars_uint32_st scalars_uint32
+) {
+uint3 absoluteIdx = make_uint3(
+    blockIdx.x * blockDim.x + threadIdx.x,
+    blockIdx.y * blockDim.y + threadIdx.y,
+    blockIdx.z * blockDim.z + threadIdx.z
+);
+uint32 idxGlobal = (absoluteIdx.z * gridDim.x * blockDim.x * gridDim.y * blockDim.y) + (absoluteIdx.y * gridDim.x * blockDim.x) + absoluteIdx.x;
+const bool l_0 = idxGlobal < scalars_uint32.x[0];
+if (l_0) {
+buffer_0[idxGlobal] = int32(0);
+} else {
+return;}
+
+}
+```
+[END_KERNEL_COMPILATION]
+
+[START_KERNEL_COMPILATION]
+name: test1::kernel::histogram_kernel::HistogramKernel<
+    i32,
+    cubecl_cuda::runtime::CudaRuntime,
+>
+cube_dim: (256, 1, 1)
+info: KernelId {
+    type_id: TypeId (
+        0x63f1408f640e4546ad3714dad0bd1bab,
+    ),
+    info: Some (
+         (
+            CubeDim {
+                x: 256,
+                y: 1,
+                z: 1,
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+            TensorCompilationArg {
+                inplace: None,
+                vectorisation: Some (
+                    1,
+                ),
+            },
+        ),
+    ),
+    mode: Some (
+        Checked,
+    ),
+    type_name: "test1: : kernel: : histogram_kernel: : HistogramKernel<i32,
+    cubecl_cuda: : runtime: : CudaRuntime>",
+}
+source:
+```cpp
+#include <cuda_runtime.h>
+typedef unsigned int uint;
+typedef unsigned char uint8;
+typedef unsigned short uint16;
+typedef unsigned int uint32;
+typedef unsigned long long int uint64;
+typedef signed char int8;
+typedef signed short int16;
+typedef signed int int32;
+typedef signed long long int int64;
+
+struct metadata_st {
+uint x[15];
+};
+
+
+extern "C" __global__ void histogram_kernel (
+    const int32* __restrict__ buffer_0, int32* buffer_1, int32* buffer_2, const uint32* __restrict__ info, const __grid_constant__ metadata_st static_info
+) {
+const uint32 l_0 = uint32(int32(1));
+const uint32 l_3 = static_info.x[uint32(2)];
+const bool l_4 = l_0 < l_3;
+const uint32 l_5 = uint32(l_4);
+const uint32 l_6 = l_0 * l_5;
+int32* l_7 = &buffer_2[l_6];
+const int32 l_1 = l_7;
+const int32 l_2 = atomicAdd(l_1, int32(1));
+
+}
+```
+[END_KERNEL_COMPILATION]
+
