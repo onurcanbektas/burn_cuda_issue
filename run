@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+
+# srun --pty --gres=gpu:v100:1 --cpus-per-task=1  --mem=2GB --time=0-15:00:00 --export=ALL --partition=cluster,inter,small bash
+
+cargo run --release --features test10,wgpu
+
+singularity exec --nv --bind /scratch/o/Onurcan.Bektas/:/scratch/o/Onurcan.Bektas/  docker://nvcr.io/nvidia/nvhpc:24.7-devel-cuda12.5-ubuntu24.04 bash
+mkdir -p /scratch-local/Onurcan.Bektas/tmp/
+export CUDA_PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/2024/cuda/
+cargo run --release --features test10,cuda
+
+
+
+
+

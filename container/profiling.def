@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/nvhpc:21.3-devel-cuda11.2-ubuntu20.04
+Stage: build
+
+%environment
+
+%runscript
+  bash
+
+%post
+  export TZ="Europe/London"
+  export DEBIAN_FRONTEND=noninteractive 
+  apt-get update 
+  apt-get install -y git-all wget curl software-properties-common
+  apt-get install -y build-essential
+  wget https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.sh
+  wget https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-linux-x86_64.tar.gz
+  chmod +x cmake-4.0.3-linux-x86_64.sh
+  ./cmake-4.0.3-linux-x86_64.sh --skip-license
+  git clone https://github.com/NVIDIA/cuda-samples
+  mkdir /cuda-samples/build/

@@ -1,0 +1,11 @@
+[profiling]
+logger = { log = "trace", level = "full", file = "log.profiling" }
+
+[autotune]
+level = "full"
+cache = "target"
+logger = { log = "trace", level = "full", file = "log.autotune" }
+
+[compilation]
+logger = { log = "trace", level = "full", file = "log.compilation" }
+cache = "target"

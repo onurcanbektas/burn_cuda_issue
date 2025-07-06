@@ -1,0 +1,66 @@
+[package]
+authors = ["nathanielsimard <nathaniel.simard.42@gmail.com>"]
+edition.workspace = true
+license.workspace = true
+name = "test1"
+publish = false
+version.workspace = true
+
+[dependencies]
+burn = { path = "../../crates/burn", default-features = false, features = [
+    "autodiff",
+    "autotune",
+    "template",
+] }
+burn-cubecl = { path = "../../crates/burn-cubecl", default-features = false }
+burn-cuda = { path = "../../crates/burn-cuda" }
+cubecl = { workspace = true }
+# cubecl = { path = "../../../cubecl/" }
+# cubecl = { version = "*"}
+# cubecl = { git = "https://github.com/ArthurBrussee/cubecl.git", branch = "prof-tracy"}
+
+# Serialization
+log = { workspace = true }
+serde = { workspace = true, features = ["std", "derive"] }
+
+# Wgpu internal dependencies
+bytemuck = { workspace = true }
+derive-new = { workspace = true }
+rand.workspace = true
+rand_distr.workspace = true
+indicatif.workspace = true
+assert_float_eq = "1.1.4"
+assert_approx_eq = "1.1.0"
+num-traits.workspace = true
+ndarray.workspace = true
+approx = "0.5.1"
+macro_const = "0.1.0"
+rayon.workspace = true
+# tracy_full = {version = "1.11.0", features = ["enable", "wgpu"]}
+comptime = "1.0.0"
+# polars = { version = "0.45.1", features = ["lazy"] }
+
+[features]
+vulkan = ["burn/vulkan", "wgpu"]
+cuda = ["burn/cuda"]
+wgpu = ["burn/wgpu", "cubecl/wgpu"]
+metal = ["burn/metal", "wgpu"]
+small = []
+big = []
+huge = []
+debug = []
+debug_big = []
+langevin = []
+test10 = []
+test12 = []
+test14 = []
+
+
+[profile.release]
+debug = true
+inherits = "release"
+codegen-units = 1
+lto = "fat" 
+
+[dev-dependencies]
+criterion = { version = "*", features = ["html_reports"] }
