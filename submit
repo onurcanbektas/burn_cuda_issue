@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-srun --pty --gres=gpu:v100:1 --cpus-per-task=1  --mem=2GB --time=0-15:00:00 --export=ALL --partition=cluster,inter,small bash
-# srun --pty --gres=gpu:v100:1 --cpus-per-task=1  --mem=4GB --time=0-01:00:00 --export=ALL --partition=cluster,inter,small bash
